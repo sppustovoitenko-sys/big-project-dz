@@ -1,62 +1,114 @@
 <!DOCTYPE html>
 <html lang="ru">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>My Todo App - Управление задачами</title>
-    <link rel="stylesheet" href="style.css">
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>My Todo App</title>
+
+<link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+
 </head>
+
 <body>
-    <div class="container">
-        <header class="header">
-            <div class="header-content">
-                <h1>✓ My Todo App</h1>
-                <button class="theme-toggle" id="themeToggle" title="Переключить тему">🌙</button>
-            </div>
-        </header>
 
-        <main class="main">
-            <div class="input-section">
-                <input 
-                    type="text" 
-                    id="todoInput" 
-                    class="todo-input" 
-                    placeholder="Добавить новую задачу..."
-                    autocomplete="off"
-                >
-                <button class="btn-add" id="addBtn">Добавить</button>
-            </div>
+<div class="container">
 
-            <div class="filters">
-                <button class="filter-btn active" data-filter="all">Все</button>
-                <button class="filter-btn" data-filter="active">Активные</button>
-                <button class="filter-btn" data-filter="completed">Завершённые</button>
-            </div>
+<header class="header">
+<h1>✓ My Todo App</h1>
+</header>
 
-            <div class="stats">
-                <span>Всего: <strong id="totalCount">0</strong></span>
-                <span>Активные: <strong id="activeCount">0</strong></span>
-                <span>Завершённые: <strong id="completedCount">0</strong></span>
-            </div>
+<main class="main">
 
-            <div id="todoList" class="todo-list">
-                <!-- Задачи добавляются сюда -->
-            </div>
+<form class="input-section" action="/add" method="post">
 
-            <div id="emptyState" class="empty-state">
-                <p>📝 Нет задач. Добавьте первую!</p>
-            </div>
+<input
+name="text"
+class="todo-input"
+placeholder="Добавить новую задачу..."
+>
 
-            <button class="btn-clear" id="clearBtn" style="display: none;">
-                Очистить завершённые
-            </button>
-        </main>
+<button class="btn-add">Добавить</button>
 
-        <footer class="footer">
-            <p>Made with ❤️ | Efficient Task Management</p>
-        </footer>
-    </div>
+</form>
 
-    <script src="script.js"></script>
+<div class="filters">
+
+<a href="/?filter=all" class="filter-btn">Все</a>
+<a href="/?filter=active" class="filter-btn">Активные</a>
+<a href="/?filter=completed" class="filter-btn">Завершённые</a>
+
+</div>
+
+<div class="stats">
+
+<span>Всего: <strong>{{total}}</strong></span>
+<span>Активные: <strong>{{active}}</strong></span>
+<span>Завершённые: <strong>{{completed}}</strong></span>
+
+</div>
+
+<div class="todo-list">
+
+{% if todos %}
+
+{% for todo in todos %}
+
+<div class="todo-item {% if todo.completed %}completed{% endif %}">
+
+<form action="/toggle/{{todo.id}}" method="post">
+
+<input
+type="checkbox"
+class="todo-checkbox"
+onchange="this.form.submit()"
+{% if todo.completed %}checked{% endif %}
+>
+
+</form>
+
+<span class="todo-text">{{todo.text}}</span>
+
+<div class="todo-actions">
+
+<form action="/delete/{{todo.id}}" method="post">
+
+<button class="btn-delete">✕</button>
+
+</form>
+
+</div>
+
+</div>
+
+{% endfor %}
+
+{% else %}
+
+<div class="empty-state">
+<p>📝 Нет задач. Добавьте первую!</p>
+</div>
+
+{% endif %}
+
+</div>
+
+<form action="/clear" method="post">
+
+<button class="btn-clear">
+Очистить завершённые
+</button>
+
+</form>
+
+</main>
+
+<footer class="footer">
+<p>Made with ❤️ | Efficient Task Management</p>
+</footer>
+
+</div>
+
 </body>
 </html>
