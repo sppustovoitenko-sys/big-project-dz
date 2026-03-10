@@ -64,7 +64,6 @@ body.dark-theme {
     transform: scale(1.1);
 }
 
-/* INPUT SECTION */
 .input-section {
     display: flex;
     gap: 10px;
@@ -112,7 +111,6 @@ body.dark-theme {
     transform: translateY(0);
 }
 
-/* FILTERS */
 .filters {
     display: flex;
     gap: 10px;
@@ -143,7 +141,6 @@ body.dark-theme {
     font-weight: bold;
 }
 
-/* STATS */
 .stats {
     background: rgba(255, 255, 255, 0.15);
     padding: 15px 20px;
@@ -162,7 +159,6 @@ body.dark-theme {
     font-size: 1.1em;
 }
 
-/* TODO LIST */
 .todo-list {
     flex: 1;
     display: flex;
@@ -259,7 +255,6 @@ body.dark-theme {
     transform: scale(0.95);
 }
 
-/* EDIT MODE */
 .todo-item.edit-mode .todo-text {
     display: none;
 }
@@ -294,7 +289,6 @@ body.dark-theme {
     transform: scale(1.05);
 }
 
-/* EMPTY STATE */
 .empty-state {
     display: flex;
     justify-content: center;
@@ -309,7 +303,6 @@ body.dark-theme {
     display: none;
 }
 
-/* BUTTONS */
 .btn-clear {
     align-self: center;
     padding: 12px 25px;
@@ -329,7 +322,6 @@ body.dark-theme {
     transform: scale(1.05);
 }
 
-/* FOOTER */
 .footer {
     text-align: center;
     color: rgba(255, 255, 255, 0.8);
@@ -338,7 +330,6 @@ body.dark-theme {
     font-size: 0.9em;
 }
 
-/* ANIMATIONS */
 @keyframes slideInDown {
     from {
         opacity: 0;
@@ -372,7 +363,6 @@ body.dark-theme {
     }
 }
 
-/* DARK THEME */
 body.dark-theme .todo-item {
     background: #2a2a3e;
     color: #fff;
@@ -400,7 +390,6 @@ body.dark-theme .stats {
     border-color: rgba(255, 255, 255, 0.1);
 }
 
-/* RESPONSIVE */
 @media (max-width: 600px) {
     .header h1 {
         font-size: 2em;
@@ -428,4 +417,5 @@ body.dark-theme .stats {
     .btn-delete {
         flex: 1;
     }
+
 }
